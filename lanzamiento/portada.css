@@ -1,18 +1,77 @@
+@font-face {
+  font-family: "Playfair Display";
+  src: url("assets/playfair-display-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+:root {
+  --navy: #0b1e33;
+  --navy-deep: #08182a;
+  --silver: #dae3ec;
+  --accent: #8eacc8;
+  --paper: #f8f6f2;
+  color-scheme: dark;
+}
+
 body {
-  margin: 0;
-  min-height: 100vh;
-  min-height: 100svh;
+  box-sizing: border-box;
   display: grid;
   place-items: center;
-  background: #f8f6f2;
-  color: #0b1e33;
-  font-family: Georgia, serif;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  padding: clamp(2.25rem, 8vw, 6rem) clamp(1.75rem, 8vw, 6rem);
+  position: relative;
+  isolation: isolate;
+  background: radial-gradient(ellipse at 50% 20%, var(--navy), var(--navy-deep) 78%);
+  color: var(--paper);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: clamp(0.75rem, 3vw, 2rem);
+  z-index: -1;
+  border: 1px solid var(--silver);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.portada {
+  width: min(100%, 44rem);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.marca {
+  display: block;
+  width: min(100%, 19rem);
+  height: auto;
 }
 
 h1 {
   margin: 0;
-  padding: 1.5rem;
-  font-size: clamp(1.5rem, 4vw, 2.75rem);
-  font-weight: 400;
-  text-align: center;
+  max-width: 20ch;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.875rem, 5.3vw, 3.75rem);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+h1::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin: clamp(2.25rem, 6.5vw, 4.5rem) auto clamp(1.5rem, 4vw, 2.75rem);
+  background: var(--accent);
+}
+
+time {
+  color: var(--accent);
 }
