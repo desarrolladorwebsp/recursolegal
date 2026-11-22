@@ -1,6 +1,6 @@
 @font-face {
   font-family: Inter;
-  src: url("/assets/fuentes/inter-latin.woff2") format("woff2");
+  src: url("../public/assets/fuentes/inter-latin.woff2") format("woff2");
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Playfair Display";
-  src: url("/assets/fuentes/playfair-display-latin.woff2") format("woff2");
+  src: url("../public/assets/fuentes/playfair-display-latin.woff2") format("woff2");
   font-style: normal;
   font-weight: 400 600;
   font-display: swap;
@@ -137,7 +137,7 @@ p { max-width: 66ch; }
   color: var(--white);
 }
 .hero {
-  background-image: url("/assets/portada.webp");
+  background-image: url("../public/assets/portada.webp");
   background-size: cover;
   background-position: center 53%;
 }
@@ -503,9 +503,9 @@ p { max-width: 66ch; }
 }
 .subhero-areas::before {
   background: linear-gradient(90deg, #08182afc 4%, #08182add 36%, #08182a36 100%),
-    url("/assets/arquitectura.webp") right 28% / cover;
+    url("../public/assets/arquitectura.webp") right 28% / cover;
 }
-.subhero-about::before { left: 51%; background: url("/assets/sala.webp") center / cover; }
+.subhero-about::before { left: 51%; background: url("../public/assets/sala.webp") center / cover; }
 
 .detail-grid { margin-top: 0; }
 .detail-card {
@@ -661,7 +661,7 @@ p { max-width: 66ch; }
   .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .subhero-about::before {
     left: 0;
-    background: linear-gradient(90deg, #08182afc, #08182ad9 48%, #08182a5e), url("/assets/sala.webp") center / cover;
+    background: linear-gradient(90deg, #08182afc, #08182ad9 48%, #08182a5e), url("../public/assets/sala.webp") center / cover;
   }
 }
 

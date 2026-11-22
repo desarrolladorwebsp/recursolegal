@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
-const output = "out";
+const [output = "out", basePath = ""] = process.argv.slice(2);
 const exportedPages = (await readdir(output, { recursive: true })).filter((path) => path.endsWith(".html"));
 const hashes = new Set();
 
@@ -18,4 +18,6 @@ for (const page of exportedPages) {
 
 const template = await readFile("public/.htaccess", "utf8");
 const scriptPolicy = ["script-src 'self'", ...hashes].join(" ");
-await writeFile(join(output, ".htaccess"), template.replace("script-src 'self'", scriptPolicy));
+const policy = template.replace("script-src 'self'", scriptPolicy)
+  .replace("ErrorDocument 404 /404.html", `ErrorDocument 404 ${basePath}/404.html`);
+await writeFile(join(output, ".htaccess"), policy);

@@ -20,5 +20,15 @@ export default function config(phase: string): NextConfig {
     };
   }
 
-  return { output: "export", trailingSlash: false };
+  const previewPath = process.env.RECURSO_LEGAL_PREVIEW_PATH;
+
+  return previewPath
+    ? {
+        output: "export",
+        trailingSlash: false,
+        basePath: previewPath,
+        distDir: "out-preview-site",
+        env: { NEXT_PUBLIC_RECURSO_BASE_PATH: previewPath },
+      }
+    : { output: "export", trailingSlash: false };
 }

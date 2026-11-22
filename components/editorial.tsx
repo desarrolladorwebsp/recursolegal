@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { guides } from "../lib/resources";
-import { site } from "../lib/site";
+import { site, sitePath } from "../lib/site";
 
 export function EditorialHeading({ title, intro, children }: { title: string; intro: string; children?: ReactNode }) {
   return (
@@ -20,7 +20,7 @@ export function ContactPanel() {
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
         <li><a href={site.phone.href}>{site.phone.number}</a></li>
       </ul>
-      <a className="button hero-secondary" href="/index.html#contacto">Contactar al estudio <span aria-hidden="true">↗</span></a>
+      <a className="button hero-secondary" href={sitePath("/index.html#contacto")}>Contactar al estudio <span aria-hidden="true">↗</span></a>
     </aside>
   );
 }
@@ -30,9 +30,9 @@ export function GuideCards() {
   return (
     <div className="guides-layout">
       <article className="guide-feature" data-reveal>
-        <a href={`/noticias/${featured.slug}.html`} className="guide-link">
+        <a href={sitePath(`/noticias/${featured.slug}.html`)} className="guide-link">
           <div className="guide-image">
-            <img src="/assets/arquitectura.webp" width="1250" height="833" alt="" loading="lazy" />
+            <img src={sitePath("/assets/arquitectura.webp")} width="1250" height="833" alt="" loading="lazy" />
           </div>
           <p className="editorial-category">{featured.category}</p>
           <h2>{featured.title}</h2>
@@ -43,7 +43,7 @@ export function GuideCards() {
       <div className="guide-side">
         {rest.map((guide) => (
           <article className="guide-brief" key={guide.slug} data-reveal>
-            <a className="guide-link" href={`/noticias/${guide.slug}.html`}>
+            <a className="guide-link" href={sitePath(`/noticias/${guide.slug}.html`)}>
               <p className="editorial-category">{guide.category}</p>
               <h2>{guide.title}</h2>
               <p>{guide.summary}</p>

@@ -30,3 +30,7 @@ export const meetingModes = [
   { label: "Reunión presencial", icon: "person" },
   { label: "Videollamada", icon: "video" },
 ] as const;
+
+export function sitePath(route: `/${string}`) {
+  return `${process.env.NEXT_PUBLIC_RECURSO_BASE_PATH ?? ""}${route}`;
+}

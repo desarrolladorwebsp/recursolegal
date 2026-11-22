@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sitePath } from "../lib/site";
 import { defenseSteps } from "../lib/resources";
 
 export function DefenseStory() {
@@ -27,7 +28,7 @@ export function DefenseStory() {
         </ol>
         <div className="story-panel" id="defensa-etapa" data-reveal>
           <div className="story-image">
-            <img src="/assets/sala.webp" width="928" height="758" alt="" loading="lazy" />
+            <img src={sitePath("/assets/sala.webp")} width="928" height="758" alt="" loading="lazy" />
           </div>
           <div className="story-content" aria-live="polite" aria-atomic="true">
             <div className="story-copy" key={step.short}>
@@ -56,7 +57,7 @@ export function GoogleReviews() {
           <div><h2 id="resenas-titulo">Reseñas de Google</h2>
             <p>Las opiniones verificadas se mostrarán cuando se vincule el perfil oficial del estudio.</p>
           </div>
-          <a className="text-action" href="/index.html#contacto">Contactar al estudio <span aria-hidden="true">↗</span></a>
+          <a className="text-action" href={sitePath("/index.html#contacto")}>Contactar al estudio <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>

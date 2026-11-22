@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { navigation, site, socials } from "../lib/site";
+import { navigation, site, sitePath, socials } from "../lib/site";
 import { EconomicIndicators } from "./economic-indicators";
 import { LineIcon, SocialIcon } from "./icons";
 import { SiteEffects } from "./site-effects";
@@ -8,9 +8,9 @@ type Route = "home" | "areas" | "about" | "faq" | "news" | "legal";
 
 function Brand({ light = false, current = false }: { light?: boolean; current?: boolean }) {
   return (
-    <a className="brand" href="/index.html" aria-label="Recurso Legal, inicio" aria-current={current ? "page" : undefined}>
+    <a className="brand" href={sitePath("/index.html")} aria-label="Recurso Legal, inicio" aria-current={current ? "page" : undefined}>
       <img
-        src={light ? "/assets/marca-clara.webp" : "/assets/marca-oscura.webp"}
+        src={sitePath(light ? "/assets/marca-clara.webp" : "/assets/marca-oscura.webp")}
         width={960}
         height={light ? 163 : 160}
         alt="Recurso Legal · Estudio Jurídico"
@@ -24,7 +24,7 @@ function HeaderLinks({ current, className }: { current: Route; className?: strin
   return (
     <nav className={className} aria-label="Navegación principal">
       {navigation.map(({ id, label, href }) => (
-        <a key={id} className={id === "contact" ? "nav-contact" : undefined} href={href} aria-current={id === current ? "page" : undefined}>
+        <a key={id} className={id === "contact" ? "nav-contact" : undefined} href={sitePath(href)} aria-current={id === current ? "page" : undefined}>
           {label}
         </a>
       ))}
@@ -66,7 +66,7 @@ function Footer({ showConsultation }: { showConsultation: boolean }) {
         <div className="footer-inner">
           <div className="footer-brand">
             <Brand light />
-            {showConsultation ? <a className="button" href="/index.html#contacto">Conversemos sobre tu caso</a> : null}
+            {showConsultation ? <a className="button" href={sitePath("/index.html#contacto")}>Conversemos sobre tu caso</a> : null}
           </div>
           <div className="footer-contact">
             <h2>Contacto</h2>
@@ -80,17 +80,17 @@ function Footer({ showConsultation }: { showConsultation: boolean }) {
             <h2>Explora el sitio</h2>
             <ul className="footer-links">
               {navigation.filter(({ id }) => id !== "contact").map(({ id, href, label }) => (
-                <li key={id}><a href={href}>{label}</a></li>
+                <li key={id}><a href={sitePath(href)}>{label}</a></li>
               ))}
-              <li><a href="/index.html#ubicacion">Ubicación y reuniones</a></li>
+              <li><a href={sitePath("/index.html#ubicacion")}>Ubicación y reuniones</a></li>
             </ul>
           </nav>
           <EconomicIndicators />
         </div>
         <div className="footer-resources">
           <nav aria-label="Información legal">
-            <a href="/privacidad.html">Política de privacidad</a>
-            <a href="/normativas.html">Normativas y aviso legal</a>
+            <a href={sitePath("/privacidad.html")}>Política de privacidad</a>
+            <a href={sitePath("/normativas.html")}>Normativas y aviso legal</a>
           </nav>
           <nav aria-label="Redes sociales">
             {socials.map(({ href, name }) => (

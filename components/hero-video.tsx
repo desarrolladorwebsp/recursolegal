@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { sitePath } from "../lib/site";
 
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -17,7 +18,7 @@ export function HeroVideo() {
     }
 
     motion.addEventListener("change", stopOnReducedMotion);
-    video.src = "/assets/hero.mp4";
+    video.src = sitePath("/assets/hero.mp4");
     void video.play().catch(() => {
       if (active) video.hidden = true;
     });
@@ -29,5 +30,5 @@ export function HeroVideo() {
     };
   }, []);
 
-  return <video ref={videoRef} className="hero-video" poster="/assets/portada.webp" preload="none" muted playsInline aria-hidden="true" />;
+  return <video ref={videoRef} className="hero-video" poster={sitePath("/assets/portada.webp")} preload="none" muted playsInline aria-hidden="true" />;
 }

@@ -31,3 +31,11 @@ Privacidad y aviso legal son borradores para revisar antes de publicar. Las rese
 ## Paleta aprobada
 
 La primera propuesta de la lámina `propuestas-acento-recurso-legal.png` es **Azul acero `#8EACC8`**. Se usa en botones principales y estados activos, con texto azul marino `#0B1E33`. Sobre fondos claros se reserva también para líneas decorativas. Los colores base son azul marino `#0B1E33`, plata `#DAE3EC` y marfil `#F8F6F2`.
+
+## Vista previa antes de publicar
+
+Ejecuta `npm run preview:build -- NNNNNN` con un código de seis dígitos para abrir la revisión en `/mockup-NNNNNN/`. Si omites el código, el comando generará uno. La exportación queda en `out-preview/` y el paquete en `recurso-legal-vista-previa.zip`. Para probarla localmente, sirve `out-preview/` con un servidor HTTP.
+
+Ese paquete muestra únicamente «De momento no muestres más nada» en la raíz. El sitio completo se puede recorrer desde el enlace de revisión, que no se anuncia en la portada y lleva instrucciones para excluirlo de buscadores. El código de seis dígitos no es una contraseña. Para restringir el acceso, protege la carpeta de revisión con autenticación en cPanel.
+
+La publicación prevista para el 25 de noviembre de 2026 es un paso independiente. El paquete completo se sigue generando con `npm run package:cpanel`.

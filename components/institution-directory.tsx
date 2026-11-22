@@ -1,3 +1,4 @@
+import { sitePath } from "../lib/site";
 import { institutionGroups } from "../lib/resources";
 
 export function InstitutionDirectory() {
@@ -24,7 +25,7 @@ export function InstitutionDirectory() {
             </section>
           ))}
         </div>
-        <a className="button institution-cta" href="/index.html?area=institucional#contacto">
+        <a className="button institution-cta" href={sitePath("/index.html?area=institucional#contacto")}>
           Consultar sobre defensa institucional <span aria-hidden="true">↗</span>
         </a>
       </div>

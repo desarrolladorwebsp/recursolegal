@@ -6,6 +6,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: { default: "Estudio jurídico | Recurso Legal", template: "%s | Recurso Legal" },
   description: "Recurso Legal ofrece asesoría y defensa jurídica para personas, empresas e instituciones.",
+  robots: process.env.NEXT_PUBLIC_RECURSO_BASE_PATH
+    ? { index: false, follow: false, noarchive: true }
+    : undefined,
 };
 
 export const viewport: Viewport = { themeColor: site.themeColor };

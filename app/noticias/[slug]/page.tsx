@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ContactPanel, EditorialHeading } from "../../../components/editorial";
 import { SiteShell } from "../../../components/site-shell";
 import { guides } from "../../../lib/resources";
-import { site } from "../../../lib/site";
+import { site, sitePath } from "../../../lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,7 +32,7 @@ export default async function GuidePage({ params }: Props) {
     <SiteShell current="news">
       <article className="editorial-section">
         <div className="wrap">
-          <a className="back-link" href="/noticias.html">← Noticias jurídicas</a>
+          <a className="back-link" href={sitePath("/noticias.html")}>← Noticias jurídicas</a>
           <p className="editorial-category">{guide.category}</p>
           <EditorialHeading title={guide.title} intro={guide.summary} />
           <div className="resource-layout">
