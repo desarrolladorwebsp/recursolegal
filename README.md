@@ -39,3 +39,7 @@ Ejecuta `npm run preview:build -- NNNNNN` con un código de seis dígitos para a
 Ese paquete muestra únicamente «De momento no muestres más nada» en la raíz. El sitio completo se puede recorrer desde el enlace de revisión, que no se anuncia en la portada y lleva instrucciones para excluirlo de buscadores. El código de seis dígitos no es una contraseña. Para restringir el acceso, protege la carpeta de revisión con autenticación en cPanel.
 
 La publicación prevista para el 25 de noviembre de 2026 es un paso independiente. El paquete completo se sigue generando con `npm run package:cpanel`.
+
+### Portada temporal en Vercel
+
+Mientras esté vigente el aviso de lanzamiento, `vercel.json` publica únicamente la carpeta `lanzamiento/`. La aplicación completa sigue disponible en el código y en sus exportaciones locales. El despliegue definitivo requiere cambiar esa configuración después de aprobar la publicación.
