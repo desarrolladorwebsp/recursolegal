@@ -1,0 +1,25 @@
+{
+  "name": "recurso-legal",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/prepare-export.mjs",
+    "typecheck": "tsc --noEmit",
+    "package:cpanel": "npm run build && node scripts/package-cpanel.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "~5.9.3"
+  }
+}

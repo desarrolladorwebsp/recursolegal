@@ -1,3 +1,9 @@
 .DS_Store
 ._*
 /recurso-legal-cpanel.zip
+
+/node_modules/
+/.next/
+/out/
+/next-env.d.ts
+*.tsbuildinfo
