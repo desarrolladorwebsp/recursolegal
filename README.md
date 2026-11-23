@@ -42,4 +42,4 @@ La publicación prevista para el 25 de noviembre de 2026 es un paso independient
 
 ### Portada temporal en Vercel
 
-Mientras esté vigente el aviso de lanzamiento, `vercel.json` publica únicamente la carpeta `lanzamiento/`. La aplicación completa sigue disponible en el código y en sus exportaciones locales. El despliegue definitivo requiere cambiar esa configuración después de aprobar la publicación.
+Mientras esté vigente el aviso de lanzamiento, Vercel sirve la portada de `lanzamiento/` en la raíz y exporta el sitio completo en `/smartpro/vista-privada/<código>/`. Configura `RECURSO_LEGAL_PREVIEW_KEY` en el entorno de producción con un valor aleatorio de 32 caracteres hexadecimales. La vista de revisión es accesible a quien tenga el enlace y está excluida de la indexación. Para publicar el sitio completo en la raíz, cambia la configuración de Vercel después de aprobar el lanzamiento.

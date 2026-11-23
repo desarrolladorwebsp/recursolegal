@@ -12,3 +12,5 @@
 /out-preview-site/
 /.preview-*/
 /recurso-legal-vista-previa.zip
+
+/out-vercel/
