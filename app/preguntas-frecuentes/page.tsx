@@ -15,8 +15,8 @@ export default function FaqPage() {
     <SiteShell current="faq">
       <section className="editorial-section">
         <div className="wrap">
-          <EditorialHeading title="Preguntas frecuentes" intro="Qué preparar para la primera consulta, cómo coordinar una reunión y cuándo se definen los honorarios." />
-          <div className="resource-layout">
+          <EditorialHeading label="Antes de consultar" title="Preguntas frecuentes." />
+          <div className="resource-layout faq-layout">
             <div className="faq-list">
               {questions.map(({ title, answer }) => (
                 <details key={title} className="faq-item" name="preguntas" data-reveal>

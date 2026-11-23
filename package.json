@@ -13,11 +13,13 @@
     "preview:build": "node scripts/build-preview.mjs"
   },
   "dependencies": {
+    "leaflet": "1.9.4",
     "next": "16.4.6",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
   "devDependencies": {
+    "@types/leaflet": "1.9.21",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",

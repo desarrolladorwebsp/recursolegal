@@ -2,27 +2,32 @@ import { practices } from "../lib/content";
 import { meetingModes, site } from "../lib/site";
 import { AppointmentPreferences } from "./appointment-preferences";
 import { ConsultationForm } from "./consultation-form";
-import { LineIcon } from "./icons";
+import { LineIcon, type LineName } from "./icons";
+import { LocationMap } from "./location-map";
 import { SectionHeading } from "./section-heading";
 
-const contactMethods = [
-  { title: "Correo electrónico", href: `mailto:${site.email}`, value: site.email },
-  { title: "Teléfono", href: site.phone.href, value: site.phone.number },
-  { title: "WhatsApp", href: site.whatsapp.href, value: site.whatsapp.number },
+const contactMethods: readonly { title: string; href: string; value: string; icon: LineName }[] = [
+  { title: "Correo electrónico", href: `mailto:${site.email}`, value: site.email, icon: "mail" },
+  { title: "Teléfono", href: site.phone.href, value: site.phone.number, icon: "phone" },
+  { title: "WhatsApp", href: site.whatsapp.href, value: site.whatsapp.number, icon: "whatsapp" },
 ];
 
 export function ContactSection() {
   return (
     <section className="home-contact" id="contacto" aria-labelledby="contacto-titulo">
       <div className="wrap">
-        <SectionHeading id="contacto-titulo" label="Contacto" title="Conversemos sobre tu caso."
-          description="Escríbenos o llámanos para coordinar una primera conversación." />
         <div className="contact-layout">
-          <div className="contact-options" data-reveal>
-            <h3>Canales de contacto</h3>
+          <div className="contact-options">
+            <SectionHeading id="contacto-titulo" label="Contacto" title="Conversemos sobre tu caso."
+              description="Escríbenos o llámanos para coordinar una primera conversación." />
             <ul className="contact-methods">
-              {contactMethods.map(({ title, href, value }) => (
-                <li key={title}><a href={href}><strong>{title}</strong><span>{value}</span></a></li>
+              {contactMethods.map(({ title, href, value, icon }) => (
+                <li key={title}>
+                  <a href={href}>
+                    <span className="contact-method-icon"><LineIcon name={icon} /></span>
+                    <span><strong>{title}</strong><span>{value}</span></span>
+                  </a>
+                </li>
               ))}
             </ul>
             <a className="contact-location-link" href="#ubicacion">Ubicación y reuniones</a>
@@ -31,19 +36,6 @@ export function ContactSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function LocationMap() {
-  return (
-    <article className="location-reference" data-reveal>
-      <iframe className="location-map" title="Mapa de la ubicación de referencia en Santiago, Chile"
-        src={site.location.embed} width={600} height={400} loading="lazy" referrerPolicy="strict-origin-when-cross-origin" />
-      <div className="location-meta">
-        <p><strong>{site.location.address}</strong><span>Ubicación de referencia · Santiago, Chile</span></p>
-        <a href={site.location.href}>Ver referencia en Google Maps</a>
-      </div>
-    </article>
   );
 }
 

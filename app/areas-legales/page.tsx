@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function PracticePage() {
   return (
     <SiteShell current="areas">
-      <Subhero variant="areas" title="Áreas legales" description="Asesoría y defensa jurídica para personas, empresas e instituciones." />
+      <Subhero variant="areas" label="Nuestras áreas" title="Una estrategia para cada desafío." description="Cada asunto requiere análisis, preparación y una respuesta jurídica construida a su medida." />
       <PracticeCards detailed />
       <InstitutionDirectory />
     </SiteShell>

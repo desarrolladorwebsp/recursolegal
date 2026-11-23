@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { EditorialHeading, GuideCards } from "../../components/editorial";
 import { SiteShell } from "../../components/site-shell";
-import { site } from "../../lib/site";
+import { site, sitePath } from "../../lib/site";
 
 export const metadata: Metadata = {
   title: "Noticias jurídicas",
@@ -14,7 +14,10 @@ export default function NewsPage() {
     <SiteShell current="news">
       <section className="editorial-section">
         <div className="wrap">
-          <EditorialHeading title="Noticias jurídicas" intro="Guías para ordenar antecedentes y entender los primeros pasos ante un problema jurídico en Chile." />
+          <EditorialHeading label="Blog / Recurso Legal" title={<>Blog de noticias <span>jurídicas.</span></>}
+            intro="Guías para ordenar antecedentes y entender los primeros pasos ante un problema jurídico en Chile.">
+            <a className="button" href={sitePath("/index.html#contacto")}>Contáctanos ahora <span aria-hidden="true">↗</span></a>
+          </EditorialHeading>
           <GuideCards />
         </div>
       </section>

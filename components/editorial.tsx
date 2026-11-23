@@ -2,11 +2,14 @@ import type { ReactNode } from "react";
 import { guides } from "../lib/resources";
 import { site, sitePath } from "../lib/site";
 
-export function EditorialHeading({ title, intro, children }: { title: string; intro: string; children?: ReactNode }) {
+export function EditorialHeading({ title, intro, label, children }: { title: ReactNode; intro?: string; label?: string; children?: ReactNode }) {
   return (
     <header className="editorial-heading">
-      <h1>{title}</h1>
-      <p>{intro}</p>
+      <div>
+        {label ? <p className="section-label">{label}</p> : null}
+        <h1>{title}</h1>
+        {intro ? <p>{intro}</p> : null}
+      </div>
       {children}
     </header>
   );
@@ -26,32 +29,21 @@ export function ContactPanel() {
 }
 
 export function GuideCards() {
-  const [featured, ...rest] = guides;
   return (
     <div className="guides-layout">
-      <article className="guide-feature" data-reveal>
-        <a href={sitePath(`/noticias/${featured.slug}.html`)} className="guide-link">
-          <div className="guide-image">
-            <img src={sitePath("/assets/arquitectura.webp")} width="1250" height="833" alt="" loading="lazy" />
-          </div>
-          <p className="editorial-category">{featured.category}</p>
-          <h2>{featured.title}</h2>
-          <p>{featured.summary}</p>
-          <span className="editorial-read">Leer guía <span aria-hidden="true">↗</span></span>
-        </a>
-      </article>
-      <div className="guide-side">
-        {rest.map((guide) => (
-          <article className="guide-brief" key={guide.slug} data-reveal>
-            <a className="guide-link" href={sitePath(`/noticias/${guide.slug}.html`)}>
-              <p className="editorial-category">{guide.category}</p>
-              <h2>{guide.title}</h2>
-              <p>{guide.summary}</p>
-              <span className="editorial-read">Leer guía <span aria-hidden="true">↗</span></span>
-            </a>
-          </article>
-        ))}
-      </div>
+      {guides.map(({ slug, category, title, summary }) => (
+        <article className="guide-card" key={slug} data-reveal>
+          <a className="guide-link" href={sitePath(`/noticias/${slug}.html`)}>
+            <div className="guide-meta">
+              <p className="editorial-category">{category}</p>
+              <span>Guía práctica</span>
+            </div>
+            <h2>{title}</h2>
+            <p>{summary}</p>
+            <span className="editorial-read">Leer guía <span aria-hidden="true">↗</span></span>
+          </a>
+        </article>
+      ))}
     </div>
   );
 }

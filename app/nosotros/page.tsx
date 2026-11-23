@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <SiteShell current="about">
-      <Subhero variant="about" title="Nosotros" description="Recurso Legal es un estudio jurídico con un enfoque estratégico, riguroso y cercano. Escuchamos las circunstancias de cada caso para orientar los pasos a seguir." />
+      <Subhero variant="about" label="Recurso Legal" title="Soluciones jurídicas cercanas, oportunas y de calidad" description="Recurso Legal es un estudio jurídico con un enfoque estratégico, riguroso y cercano. Escuchamos las circunstancias de cada caso para orientar los pasos a seguir." />
       <TeamCards />
       <DefenseStory />
       <GoogleReviews />

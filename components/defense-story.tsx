@@ -16,20 +16,21 @@ export function DefenseStory() {
           <h2 id="defensa-titulo">Una defensa, desde dentro.</h2>
           <p>Sigue cinco etapas de un caso ilustrativo, desde la primera conversación hasta los próximos pasos.</p>
         </div>
-        <ol className="story-steps" aria-label="Etapas de la defensa">
-          {defenseSteps.map(({ short }, index) => (
-            <li key={short}>
-              <button type="button" aria-pressed={index === active} aria-controls="defensa-etapa"
-                onClick={() => setActive(index)}>
-                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>{short}
-              </button>
-            </li>
-          ))}
-        </ol>
         <div className="story-panel" id="defensa-etapa" data-reveal>
           <div className="story-image">
-            <img src={sitePath("/assets/sala.webp")} width="928" height="758" alt="" loading="lazy" />
+            <img key={active} src={sitePath(`/assets/defensa/etapa-${active + 1}.webp`)} width="1260" height="560" alt="" loading="lazy" />
+            <p className="story-image-label" aria-hidden="true">{step.short}</p>
           </div>
+          <ol className="story-steps" aria-label="Etapas de la defensa">
+            {defenseSteps.map(({ short }, index) => (
+              <li key={short}>
+                <button type="button" aria-pressed={index === active} aria-controls="defensa-etapa"
+                  onClick={() => setActive(index)}>
+                  <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>{short}
+                </button>
+              </li>
+            ))}
+          </ol>
           <div className="story-content" aria-live="polite" aria-atomic="true">
             <div className="story-copy" key={step.short}>
               <p className="section-label">Etapa {active + 1} de {defenseSteps.length}</p>

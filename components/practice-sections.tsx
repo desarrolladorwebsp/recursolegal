@@ -1,12 +1,7 @@
 import { sitePath } from "../lib/site";
 import { practices, team } from "../lib/content";
-import { LineIcon, type LineName } from "./icons";
 
-const pillars: readonly { title: string; icon: LineName }[] = [
-  { title: "Rigor jurídico", icon: "scales" },
-  { title: "Estrategia", icon: "compass" },
-  { title: "Acompañamiento", icon: "conversation" },
-];
+const pillars = ["Rigor jurídico", "Estrategia", "Acompañamiento"];
 
 export function PracticeCards({ detailed = false }: { detailed?: boolean }) {
   const grid = (
@@ -42,15 +37,9 @@ export function PracticeCards({ detailed = false }: { detailed?: boolean }) {
 
 export function Pillars() {
   return (
-    <section className="pillars" aria-label="Nuestro enfoque">
-      <div className="wrap">
-        <ul className="pillar-grid" role="list">
-          {pillars.map(({ title, icon }) => (
-            <li key={title} data-reveal><LineIcon name={icon} /><h2>{title}</h2></li>
-          ))}
-        </ul>
-      </div>
-    </section>
+    <ul className="hero-values" aria-label="Nuestro enfoque" role="list">
+      {pillars.map((title) => <li key={title}>{title}</li>)}
+    </ul>
   );
 }
 

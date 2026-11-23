@@ -6,15 +6,15 @@ import { SiteEffects } from "./site-effects";
 
 type Route = "home" | "areas" | "about" | "faq" | "news" | "legal";
 
-function Brand({ light = false, current = false }: { light?: boolean; current?: boolean }) {
+function Brand({ current = false, footer = false }: { current?: boolean; footer?: boolean }) {
   return (
     <a className="brand" href={sitePath("/index.html")} aria-label="Recurso Legal, inicio" aria-current={current ? "page" : undefined}>
       <img
-        src={sitePath(light ? "/assets/marca-clara.webp" : "/assets/marca-oscura.webp")}
+        src={sitePath("/assets/marca-oscura.webp")}
         width={960}
-        height={light ? 163 : 160}
+        height={160}
         alt="Recurso Legal · Estudio Jurídico"
-        loading={light ? "lazy" : "eager"}
+        loading={footer ? "lazy" : "eager"}
       />
     </a>
   );
@@ -25,7 +25,7 @@ function HeaderLinks({ current, className }: { current: Route; className?: strin
     <nav className={className} aria-label="Navegación principal">
       {navigation.map(({ id, label, href }) => (
         <a key={id} className={id === "contact" ? "nav-contact" : undefined} href={sitePath(href)} aria-current={id === current ? "page" : undefined}>
-          {label}
+          {label}{id === "contact" ? <span aria-hidden="true">↗</span> : null}
         </a>
       ))}
     </nav>
@@ -65,12 +65,14 @@ function Footer({ showConsultation }: { showConsultation: boolean }) {
       <div className="wrap">
         <div className="footer-inner">
           <div className="footer-brand">
-            <Brand light />
+            <Brand footer />
+            <p>Asesoría y defensa jurídica con una mirada estratégica, rigurosa y cercana.</p>
             {showConsultation ? <a className="button" href={sitePath("/index.html#contacto")}>Conversemos sobre tu caso</a> : null}
           </div>
           <div className="footer-contact">
             <h2>Contacto</h2>
             <ul className="footer-links">
+              <li><a href={site.location.href}>{site.location.address}</a></li>
               <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
               <li><a href={site.phone.href}>Teléfono <span>{site.phone.number}</span></a></li>
               <li><a href={site.whatsapp.href}>WhatsApp <span>{site.whatsapp.number}</span></a></li>

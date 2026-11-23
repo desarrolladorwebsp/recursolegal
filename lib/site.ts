@@ -1,6 +1,6 @@
 export const site = {
   url: "https://recursoslegal.cl",
-  themeColor: "#0b1e33",
+  themeColor: "#06162c",
   email: "contacto@recursolegal.cl",
   phone: { href: "tel:+56920431512", number: "+56 9 2043 1512" },
   whatsapp: { href: "https://wa.me/56935213992", number: "+56 9 3521 3992" },
@@ -12,18 +12,19 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { id: "areas", label: "Áreas legales", href: "/areas-legales.html" },
-  { id: "about", label: "Nosotros", href: "/nosotros.html" },
+  { id: "home", label: "Inicio", href: "/index.html" },
+  { id: "areas", label: "Áreas de trabajo", href: "/areas-legales.html" },
   { id: "faq", label: "Preguntas frecuentes", href: "/preguntas-frecuentes.html" },
-  { id: "news", label: "Noticias", href: "/noticias.html" },
+  { id: "about", label: "Nosotros", href: "/nosotros.html" },
+  { id: "news", label: "Blog de noticias", href: "/noticias.html" },
   { id: "contact", label: "Contacto", href: "/index.html#contacto" },
 ] as const;
 
 export const socials = [
-  { name: "YouTube", href: "https://www.youtube.com/@RecursoLegalcl" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/recurso-legal" },
-  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61596714573640" },
   { name: "Instagram", href: "https://www.instagram.com/rlegal_cl/" },
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61596714573640" },
+  { name: "YouTube", href: "https://www.youtube.com/@RecursoLegalcl" },
 ] as const;
 
 export const meetingModes = [
