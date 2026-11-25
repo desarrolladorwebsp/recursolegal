@@ -1,5 +1,5 @@
 export const site = {
-  url: "https://recursoslegal.cl",
+  url: "https://recursolegal.cl",
   themeColor: "#06162c",
   email: "contacto@recursolegal.cl",
   phone: { href: "tel:+56920431512", number: "+56 9 2043 1512" },

@@ -1,6 +1,6 @@
 # Recurso Legal
 
-Sitio institucional de Next.js, React y TypeScript. Next.js genera HTML estático para cPanel. El dominio del sitio es `recursoslegal.cl` y el correo es `contacto@recursolegal.cl`.
+Sitio institucional de Next.js, React y TypeScript. Next.js genera HTML estático para Vercel y cPanel. El dominio del sitio es `recursolegal.cl` y el correo es `contacto@recursolegal.cl`.
 
 ## Desarrollo local
 
@@ -10,7 +10,7 @@ Usa `npm run typecheck` para comprobar los tipos y `npm run build` para generar 
 
 ## Publicación en cPanel
 
-1. Reemplaza los perfiles ficticios por los datos autorizados del equipo y confirma los contactos y la dirección.
+1. Confirma los datos de contacto y la dirección antes de trasladar el sitio a otro alojamiento.
 2. Ejecuta `npm run package:cpanel` para regenerar el ZIP local. Este comando requiere la utilidad `zip`. Extrae el archivo en la raíz documental del dominio, con HTTPS habilitado. El hosting solo necesita servir archivos estáticos.
 3. Conserva `.htaccess`, que se genera durante la compilación para aplicar los encabezados de seguridad. Tras la publicación, revisa Inicio, Áreas legales, Nosotros, Preguntas frecuentes, Noticias, el mapa y los canales de contacto.
 
@@ -38,8 +38,6 @@ Ejecuta `npm run preview:build -- NNNNNN` con un código de seis dígitos para a
 
 Ese paquete muestra únicamente «De momento no muestres más nada» en la raíz. El sitio completo se puede recorrer desde el enlace de revisión, que no se anuncia en la portada y lleva instrucciones para excluirlo de buscadores. El código de seis dígitos no es una contraseña. Para restringir el acceso, protege la carpeta de revisión con autenticación en cPanel.
 
-La publicación prevista para el 25 de noviembre de 2026 es un paso independiente. El paquete completo se sigue generando con `npm run package:cpanel`.
+## Publicación en Vercel
 
-### Portada temporal en Vercel
-
-Mientras esté vigente el aviso de lanzamiento, Vercel sirve la portada de `lanzamiento/` en la raíz y exporta el sitio completo en `/smartpro/vista-privada/<código>/`. Configura `RECURSO_LEGAL_PREVIEW_KEY` en el entorno de producción con un valor aleatorio de 32 caracteres hexadecimales. La vista de revisión es accesible a quien tenga el enlace y está excluida de la indexación. Para publicar el sitio completo en la raíz, cambia la configuración de Vercel después de aprobar el lanzamiento.
+La rama `main` despliega el sitio completo en [recursolegal.cl](https://recursolegal.cl/). Vercel ejecuta `npm run build` y sirve la exportación estática de `out/`. Los enlaces de la antigua vista de revisión redirigen a las páginas públicas correspondientes.

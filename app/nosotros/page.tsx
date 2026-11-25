@@ -12,12 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const isPreview = Boolean(process.env.NEXT_PUBLIC_RECURSO_BASE_PATH);
+
   return (
     <SiteShell current="about">
       <Subhero variant="about" label="Recurso Legal" title="Soluciones jurídicas cercanas, oportunas y de calidad" description="Recurso Legal es un estudio jurídico con un enfoque estratégico, riguroso y cercano. Escuchamos las circunstancias de cada caso para orientar los pasos a seguir." />
-      <TeamCards />
+      {isPreview && <TeamCards />}
       <DefenseStory />
-      <GoogleReviews />
+      {isPreview && <GoogleReviews />}
     </SiteShell>
   );
 }

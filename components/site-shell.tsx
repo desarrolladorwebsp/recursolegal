@@ -55,6 +55,9 @@ function SocialRail() {
           <SocialIcon name={name} />
         </a>
       ))}
+      <a href={site.whatsapp.href} aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+        <LineIcon name="whatsapp" />
+      </a>
     </nav>
   );
 }
@@ -100,7 +103,13 @@ function Footer({ showConsultation }: { showConsultation: boolean }) {
             ))}
           </nav>
         </div>
-        <p className="footer-legal">© 2026 Recurso Legal. Todos los derechos reservados.</p>
+        <div className="footer-legal">
+          <p>© 2026 Recurso Legal. Todos los derechos reservados.</p>
+          <a className="footer-credit" href="https://smartpro.cl/">
+            <span>Creado por <span className="footer-credit-domain">smartpro.cl</span></span>
+            <img src={sitePath("/assets/logo-smartpro-white-letters.webp")} width={256} height={85} alt="" loading="lazy" />
+          </a>
+        </div>
       </div>
     </footer>
   );
