@@ -294,6 +294,20 @@ p { max-width: 66ch; }
 }
 .contact-field textarea { resize: vertical; }
 .contact-fields .button { width: 100%; margin-top: 0.35rem; min-height: 2.9rem; font-size: 0.875rem; }
+.contact-fields button:disabled { cursor: wait; }
+.contact-draft-button {
+  justify-self: start;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--silver);
+  font: inherit;
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+.contact-form-status:empty { margin: 0; }
 
 .contact-methods { margin: 0; padding: 0; list-style: none; }
 .contact-methods li + li { border-top: 1px solid var(--line); }

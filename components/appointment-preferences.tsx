@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { meetingTimeSlots } from "../lib/contact-draft";
 
 export function AppointmentPreferences() {
   const date = useRef<HTMLInputElement>(null);
@@ -23,8 +24,7 @@ export function AppointmentPreferences() {
           Franja horaria
           <select name="horario" form="consulta-form" defaultValue="">
             <option value="">Sin preferencia</option>
-            <option>Mañana</option>
-            <option>Tarde</option>
+            {meetingTimeSlots.map((slot) => <option key={slot}>{slot}</option>)}
           </select>
         </label>
       </div>

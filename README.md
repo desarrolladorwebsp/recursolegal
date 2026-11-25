@@ -16,7 +16,7 @@ Usa `npm run typecheck` para comprobar los tipos y `npm run build` para generar 
 
 La exportación conserva las rutas `/index.html`, `/areas-legales.html`, `/nosotros.html`, `/preguntas-frecuentes.html`, `/noticias.html`, `/privacidad.html` y `/normativas.html`. Las guías tienen sus propias rutas en `/noticias/`.
 
-El formulario abre un borrador en la aplicación de correo del visitante. La agenda recoge preferencias de fecha y horario para ese borrador. El estudio confirma la disponibilidad por contacto. El mapa se carga desde Google Maps y los indicadores de mindicador.cl, con enlace al SII.
+En cPanel se usa el botón «Preparar un borrador en mi correo». La agenda puede incluir preferencias de fecha y horario. El estudio confirma la disponibilidad por contacto. El mapa se carga desde Google Maps y los indicadores de mindicador.cl, con enlace al SII.
 
 Privacidad y aviso legal son borradores para revisar antes de publicar. Las reseñas quedan pendientes de vincular al perfil oficial del estudio.
 
@@ -41,3 +41,11 @@ Ese paquete muestra únicamente «De momento no muestres más nada» en la raíz
 ## Publicación en Vercel
 
 La rama `main` despliega el sitio completo en [recursolegal.cl](https://recursolegal.cl/). Vercel ejecuta `npm run build` y sirve la exportación estática de `out/`. Los enlaces de la antigua vista de revisión redirigen a las páginas públicas correspondientes.
+
+### Correo del formulario
+
+- Vercel ejecuta `api/consultation.ts` en el servidor. El sitio sigue siendo una exportación estática. `npm run dev` sirve el sitio, y el entorno de desarrollo de Vercel permite probar también la función.
+- Define `RESEND_API_KEY` como variable sensible en el entorno de Vercel que corresponda. Usa una clave de solo envío del dominio verificado. Para desarrollo local, guarda la clave en `.env.local`, excluido de Git.
+- Por defecto el remitente es `Recurso Legal <contacto@recursolegal.cl>`. Si la cuenta de Resend usa otro dominio verificado, define `RESEND_FROM_EMAIL` con el nombre y la dirección de envío autorizados. El buzón del estudio y la respuesta del acuse siguen siendo `contacto@recursolegal.cl`.
+- Una solicitud genera dos mensajes independientes. El estudio recibe los datos y puede responder al visitante. El visitante recibe un acuse con el pie corporativo y puede responder al estudio. Resend deduplica reintentos de la misma solicitud durante 24 horas.
+- Las plantillas están en `lib/server/consultation-email.tsx`. El logo PNG se sirve desde el sitio público. Mantén su URL disponible y comprueba el aspecto en las aplicaciones de correo antes de habilitar el envío en producción.

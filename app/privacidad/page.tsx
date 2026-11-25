@@ -21,7 +21,7 @@ export default function PrivacyPage() {
               <p className="editorial-note">Borrador para revisión del estudio antes de publicar.</p>
               <section>
                 <h2>Formulario de consulta</h2>
-                <p>El formulario prepara un borrador en tu aplicación de correo. La página no envía ni guarda los datos que escribes. Si decides enviar el borrador, la información se transmite por tu proveedor de correo al estudio.</p>
+                <p>Cuando envías el formulario desde el sitio, Resend transmite la consulta al estudio y envía una confirmación a la dirección que indicaste. El acuse no incluye el mensaje ni las preferencias que ingresaste. Si eliges preparar un borrador, tu proveedor de correo transmite los datos cuando tú decides enviarlo.</p>
               </section>
               <section>
                 <h2>Canales de contacto</h2>
