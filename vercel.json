@@ -5,6 +5,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "out",
   "cleanUrls": false,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/smartpro/vista-privada/:key([a-f0-9]{32})/:path*",
