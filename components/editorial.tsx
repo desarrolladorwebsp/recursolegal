@@ -23,7 +23,7 @@ export function ContactPanel() {
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
         <li><a href={site.phone.href}>{site.phone.number}</a></li>
       </ul>
-      <a className="button hero-secondary" href={sitePath("/index.html#contacto")}>Contactar al estudio <span aria-hidden="true">↗</span></a>
+      <a className="button hero-secondary" href={sitePath("/#contacto")}>Contactar al estudio <span aria-hidden="true">↗</span></a>
     </aside>
   );
 }

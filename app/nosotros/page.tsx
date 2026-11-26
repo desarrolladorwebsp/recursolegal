@@ -1,15 +1,10 @@
-import type { Metadata } from "next";
-import { site } from "../../lib/site";
+import { pageMetadata, seoPages } from "../../lib/seo";
 import { DefenseStory, GoogleReviews } from "../../components/defense-story";
 import { TeamCards } from "../../components/practice-sections";
 import { Subhero } from "../../components/section-heading";
 import { SiteShell } from "../../components/site-shell";
 
-export const metadata: Metadata = {
-  title: "Nosotros",
-  description: "Conoce el enfoque de asesoría y defensa jurídica de Recurso Legal.",
-  alternates: { canonical: `${site.url}/nosotros.html` },
-};
+export const metadata = pageMetadata(seoPages.about);
 
 export default function AboutPage() {
   const isPreview = Boolean(process.env.NEXT_PUBLIC_RECURSO_BASE_PATH);

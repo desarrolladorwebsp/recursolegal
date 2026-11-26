@@ -30,7 +30,7 @@ export function InstitutionDirectory() {
             ))}
           </div>
         </details>
-        <a className="button institution-cta" href={sitePath("/index.html?area=institucional#contacto")}>
+        <a className="button institution-cta" href={sitePath("/?area=institucional#contacto")}>
           Consultar sobre defensa institucional <span aria-hidden="true">↗</span>
         </a>
       </div>

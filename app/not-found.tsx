@@ -5,7 +5,7 @@ export default function NotFound() {
     <main className="practice-section">
       <div className="wrap">
         <h1>Página no encontrada</h1>
-        <p><a href={sitePath("/index.html")}>Volver a Inicio</a></p>
+        <p><a href={sitePath("/")}>Volver a Inicio</a></p>
       </div>
     </main>
   );

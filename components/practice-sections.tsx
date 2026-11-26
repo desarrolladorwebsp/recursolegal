@@ -14,7 +14,7 @@ export function PracticeCards({ detailed = false }: { detailed?: boolean }) {
               <article className="detail-card" id={id} tabIndex={-1}>
                 <h2>{title}</h2>
                 <p>{description}</p>
-                <a className="text-action" href={sitePath(`/index.html?area=${id}#contacto`)}>Consultar por esta área <span aria-hidden="true">↗</span></a>
+                <a className="text-action" href={sitePath(`/?area=${id}#contacto`)}>Consultar por esta área <span aria-hidden="true">↗</span></a>
               </article>
             ) : (
               <a className="practice-link" href={sitePath(`/areas-legales.html#${id}`)}>

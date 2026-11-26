@@ -1,14 +1,9 @@
-import type { Metadata } from "next";
+import { pageMetadata, seoPages } from "../../lib/seo";
 import { ContactPanel, EditorialHeading } from "../../components/editorial";
 import { SiteShell } from "../../components/site-shell";
 import { site } from "../../lib/site";
 
-export const metadata: Metadata = {
-  title: "Política de privacidad",
-  description: "Cómo funcionan los canales de contacto y servicios externos de Recurso Legal.",
-  alternates: { canonical: `${site.url}/privacidad.html` },
-  robots: { index: false, follow: true },
-};
+export const metadata = pageMetadata(seoPages.privacy);
 
 export default function PrivacyPage() {
   return (

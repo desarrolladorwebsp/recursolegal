@@ -1,14 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata, seoPages } from "../../lib/seo";
 import { ContactPanel, EditorialHeading } from "../../components/editorial";
 import { SiteShell } from "../../components/site-shell";
-import { site } from "../../lib/site";
 
-export const metadata: Metadata = {
-  title: "Normativas y aviso legal",
-  description: "Alcance de los recursos jurídicos de Recurso Legal y acceso a normativa chilena.",
-  alternates: { canonical: `${site.url}/normativas.html` },
-  robots: { index: false, follow: true },
-};
+export const metadata = pageMetadata(seoPages.legal);
 
 export default function LegalPage() {
   return (

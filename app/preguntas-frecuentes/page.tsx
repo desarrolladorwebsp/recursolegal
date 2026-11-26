@@ -1,14 +1,9 @@
-import type { Metadata } from "next";
+import { pageMetadata, seoPages } from "../../lib/seo";
 import { ContactPanel, EditorialHeading } from "../../components/editorial";
 import { SiteShell } from "../../components/site-shell";
 import { questions } from "../../lib/resources";
-import { site } from "../../lib/site";
 
-export const metadata: Metadata = {
-  title: "Preguntas frecuentes",
-  description: "Primera consulta, reuniones virtuales y honorarios de Recurso Legal.",
-  alternates: { canonical: `${site.url}/preguntas-frecuentes.html` },
-};
+export const metadata = pageMetadata(seoPages.faq);
 
 export default function FaqPage() {
   return (

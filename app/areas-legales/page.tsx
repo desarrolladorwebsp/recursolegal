@@ -1,15 +1,10 @@
-import type { Metadata } from "next";
-import { site } from "../../lib/site";
+import { pageMetadata, seoPages } from "../../lib/seo";
 import { InstitutionDirectory } from "../../components/institution-directory";
 import { PracticeCards } from "../../components/practice-sections";
 import { Subhero } from "../../components/section-heading";
 import { SiteShell } from "../../components/site-shell";
 
-export const metadata: Metadata = {
-  title: "Áreas legales",
-  description: "Conoce las siete áreas de asesoría y defensa jurídica de Recurso Legal.",
-  alternates: { canonical: `${site.url}/areas-legales.html` },
-};
+export const metadata = pageMetadata(seoPages.practices);
 
 export default function PracticePage() {
   return (

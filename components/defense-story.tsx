@@ -58,7 +58,7 @@ export function GoogleReviews() {
           <div><h2 id="resenas-titulo">Reseñas de Google</h2>
             <p>Las opiniones verificadas se mostrarán cuando se vincule el perfil oficial del estudio.</p>
           </div>
-          <a className="text-action" href={sitePath("/index.html#contacto")}>Contactar al estudio <span aria-hidden="true">↗</span></a>
+          <a className="text-action" href={sitePath("/#contacto")}>Contactar al estudio <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>

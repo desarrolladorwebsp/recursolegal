@@ -1,13 +1,22 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { site } from "../lib/site";
+import { homeTitle, isPreview, seoPages } from "../lib/seo";
+import { site, sitePath } from "../lib/site";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "Estudio jurídico | Recurso Legal", template: "%s | Recurso Legal" },
-  description: "Recurso Legal ofrece asesoría y defensa jurídica para personas, empresas e instituciones.",
-  robots: process.env.NEXT_PUBLIC_RECURSO_BASE_PATH
+  metadataBase: new URL(site.url),
+  title: { default: `${homeTitle} | Recurso Legal`, template: "%s | Recurso Legal" },
+  description: seoPages.home.description,
+  icons: {
+    icon: [
+      { url: sitePath("/assets/recurso-legal-icon.png"), type: "image/png", sizes: "180x180" },
+      { url: sitePath("/favicon.ico"), type: "image/x-icon", sizes: "any" },
+    ],
+    apple: { url: sitePath("/assets/recurso-legal-icon.png"), sizes: "180x180" },
+  },
+  robots: isPreview
     ? { index: false, follow: false, noarchive: true }
     : undefined,
 };

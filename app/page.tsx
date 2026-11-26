@@ -1,16 +1,20 @@
-import type { Metadata } from "next";
-import { site, sitePath } from "../lib/site";
+import { homeStructuredData, isPreview, pageMetadata, seoPages } from "../lib/seo";
+import { sitePath } from "../lib/site";
 import { ContactSection, LocationSection } from "../components/contact-sections";
 import { HeroVideo } from "../components/hero-video";
 import { Pillars, PracticeCards } from "../components/practice-sections";
 import { SiteShell } from "../components/site-shell";
 
-export const metadata: Metadata = { alternates: { canonical: `${site.url}/` } };
+export const metadata = pageMetadata(seoPages.home);
 
 export default function HomePage() {
   return (
     <SiteShell current="home">
+      {!isPreview && <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(homeStructuredData).replace(/</g, "\\u003c"),
+      }} />}
       <section className="hero" aria-labelledby="titulo">
+        <img className="hero-poster" src={sitePath("/assets/portada.webp")} width={1214} height={758} alt="" fetchPriority="high" />
         <HeroVideo />
         <div className="hero-inner">
           <div className="hero-copy">

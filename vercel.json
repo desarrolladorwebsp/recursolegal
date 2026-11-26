@@ -8,6 +8,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/smartpro/vista-privada/:key([a-f0-9]{32})/:path*",
       "destination": "/:path*",
       "permanent": false

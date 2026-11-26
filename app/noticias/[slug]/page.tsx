@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { ContactPanel, EditorialHeading } from "../../../components/editorial";
 import { SiteShell } from "../../../components/site-shell";
 import { guides } from "../../../lib/resources";
-import { site, sitePath } from "../../../lib/site";
+import { guidePath, pageMetadata } from "../../../lib/seo";
+import { sitePath } from "../../../lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,11 +17,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const guide = guides.find((item) => item.slug === slug);
   if (!guide) notFound();
 
-  return {
+  return pageMetadata({
     title: guide.title,
     description: guide.summary,
-    alternates: { canonical: `${site.url}/noticias/${guide.slug}.html` },
-  };
+    path: guidePath(guide.slug),
+    type: "article",
+  });
 }
 
 export default async function GuidePage({ params }: Props) {

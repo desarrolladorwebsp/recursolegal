@@ -8,7 +8,7 @@ type Route = "home" | "areas" | "about" | "faq" | "news" | "legal";
 
 function Brand({ current = false, footer = false }: { current?: boolean; footer?: boolean }) {
   return (
-    <a className="brand" href={sitePath("/index.html")} aria-label="Recurso Legal, inicio" aria-current={current ? "page" : undefined}>
+    <a className="brand" href={sitePath("/")} aria-label="Recurso Legal, inicio" aria-current={current ? "page" : undefined}>
       <img
         src={sitePath("/assets/marca-oscura.webp")}
         width={960}
@@ -70,7 +70,7 @@ function Footer({ showConsultation }: { showConsultation: boolean }) {
           <div className="footer-brand">
             <Brand footer />
             <p>Asesoría y defensa jurídica con una mirada estratégica, rigurosa y cercana.</p>
-            {showConsultation ? <a className="button" href={sitePath("/index.html#contacto")}>Conversemos sobre tu caso</a> : null}
+            {showConsultation ? <a className="button" href={sitePath("/#contacto")}>Conversemos sobre tu caso</a> : null}
           </div>
           <div className="footer-contact">
             <h2>Contacto</h2>
@@ -87,7 +87,7 @@ function Footer({ showConsultation }: { showConsultation: boolean }) {
               {navigation.filter(({ id }) => id !== "contact").map(({ id, href, label }) => (
                 <li key={id}><a href={sitePath(href)}>{label}</a></li>
               ))}
-              <li><a href={sitePath("/index.html#ubicacion")}>Ubicación y reuniones</a></li>
+              <li><a href={sitePath("/#ubicacion")}>Ubicación y reuniones</a></li>
             </ul>
           </nav>
           <EconomicIndicators />
