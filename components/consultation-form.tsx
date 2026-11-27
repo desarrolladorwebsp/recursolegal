@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, type SubmitEvent } from "react";
 import { contactDraftUrl, consultationFields, otherConsultationArea } from "../lib/contact-draft";
+import { isPracticeTopic } from "../lib/practice-details";
+import { LineIcon } from "./icons";
 
 const statusMessages: Record<number, string> = {
   400: "Revisa los datos de tu consulta e inténtalo de nuevo.",
@@ -15,6 +17,8 @@ const unconfirmedMessage = "No pudimos confirmar el envío. Intenta nuevamente c
 
 export function ConsultationForm({ areas, email }: { areas: readonly { id: string; title: string }[]; email: string }) {
   const fieldsRef = useRef<HTMLFieldSetElement>(null);
+  const confirmationRef = useRef<HTMLDialogElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
   const requestRef = useRef<{ payload: string; id: string } | null>(null);
   const sending = useRef(false);
   const [pending, setPending] = useState(false);
@@ -25,10 +29,17 @@ export function ConsultationForm({ areas, email }: { areas: readonly { id: strin
     if (!fieldset) return;
 
     fieldset.disabled = false;
-    const queryArea = new URLSearchParams(window.location.search).get("area");
+    const query = new URLSearchParams(window.location.search);
+    const queryArea = query.get("area");
     const area = areas.find(({ id, title }) => id === queryArea || title === queryArea);
     const selector = fieldset.querySelector("select");
     if (area && selector) selector.value = area.title;
+
+    const topic = query.get("tema");
+    const messageField = fieldset.querySelector("textarea");
+    if (area && topic && messageField && !messageField.value && isPracticeTopic(area.id, topic)) {
+      messageField.value = `Me gustaría recibir orientación sobre: ${topic}.`;
+    }
   }, [areas]);
 
   async function sendConsultation(event: SubmitEvent<HTMLFormElement>) {
@@ -56,7 +67,8 @@ export function ConsultationForm({ areas, email }: { areas: readonly { id: strin
       if (response.ok && (await response.json()).code === "accepted") {
         form.reset();
         requestRef.current = null;
-        setMessage("Recibimos tu consulta. Te enviamos una confirmación por correo.");
+        confirmationRef.current?.showModal();
+        setMessage("Tu solicitud fue recibida.");
       } else {
         setMessage(statusMessages[response.status] ?? unconfirmedMessage);
       }
@@ -90,13 +102,25 @@ export function ConsultationForm({ areas, email }: { areas: readonly { id: strin
         <div hidden>
           <input type="text" name="website" aria-label="Deja este campo vacío" tabIndex={-1} autoComplete="off" />
         </div>
-        <button className="button" type="submit" disabled={pending}>{pending ? "Enviando…" : "Enviar consulta"} <span aria-hidden="true">↗</span></button>
+        <button ref={submitRef} className="button" type="submit" disabled={pending}>{pending ? "Enviando…" : "Enviar consulta"} <span aria-hidden="true">↗</span></button>
         <button className="contact-draft-button" type="button" disabled={pending} onClick={() => {
           const form = fieldsRef.current?.form;
           if (form?.reportValidity()) window.location.href = contactDraftUrl(email, new FormData(form));
         }}>Preparar un borrador en mi correo</button>
       </fieldset>
       <p className="contact-form-status" role="status">{message}</p>
+      <dialog
+        ref={confirmationRef}
+        className="consultation-confirmation"
+        aria-labelledby="consulta-confirmacion-titulo"
+        aria-describedby="consulta-confirmacion-texto"
+        onClose={() => submitRef.current?.focus({ preventScroll: true })}
+      >
+        <span className="consultation-confirmation-icon"><LineIcon name="check" /></span>
+        <h2 id="consulta-confirmacion-titulo">Gracias. Hemos recibido tu solicitud.</h2>
+        <p id="consulta-confirmacion-texto">Muy pronto, un ejecutivo se pondrá en contacto contigo.</p>
+        <button className="button" type="button" onClick={() => confirmationRef.current?.close()}>Entendido</button>
+      </dialog>
     </form>
   );
 }

@@ -1,15 +1,51 @@
 export const questions = [
   {
-    title: "¿Qué necesito para una primera consulta?",
-    answer: "Prepara un resumen breve con los hechos, las fechas importantes y los documentos que ya tienes. Si te notificaron una resolución o hay una audiencia próxima, indícalo al escribir. Puedes comenzar aunque todavía te falten antecedentes.",
+    title: "¿Qué áreas del derecho aborda Recurso Legal?",
+    answer: "Ofrecemos asesoría y representación jurídica en distintas áreas del derecho, brindando soluciones integrales y personalizadas a personas y empresas.",
   },
   {
-    title: "¿Puedo solicitar una reunión virtual?",
-    answer: "Sí. Selecciona videollamada al solicitar la reunión y, si quieres, indica una fecha y una franja horaria de preferencia. La reunión se coordina una vez confirmada la disponibilidad del estudio.",
+    title: "¿Cómo puedo agendar una consulta jurídica?",
+    answer: "Puedes agendar una consulta a través de nuestro sitio web o escribiendo a contacto@recursolegal.cl. Nuestro equipo te orientará para coordinar tu atención.",
   },
   {
-    title: "¿Cómo se definen los honorarios?",
-    answer: "La propuesta depende del alcance del encargo, los antecedentes y las gestiones que requiera el caso. Puedes solicitar una evaluación y revisar la propuesta de honorarios antes de contratar.",
+    title: "¿La primera consulta jurídica tiene algún costo?",
+    answer: "El valor de la consulta será informado previamente, considerando la naturaleza del asunto y la especialidad jurídica requerida.",
+  },
+  {
+    title: "¿En qué consiste la primera consulta con un abogado?",
+    answer: "Analizamos tus antecedentes, aclaramos tus dudas y evaluamos las alternativas jurídicas disponibles para proteger tus derechos e intereses.",
+  },
+  {
+    title: "¿Cómo se determinan los honorarios profesionales?",
+    answer: "Los honorarios se establecen considerando la naturaleza, complejidad y alcance del servicio requerido, procurando entregar una propuesta clara y transparente.",
+  },
+  {
+    title: "¿Existen facilidades y modalidades de pago?",
+    answer: "Las modalidades y facilidades de pago podrán acordarse según las características del servicio contratado y las condiciones de cada caso.",
+  },
+  {
+    title: "¿Ofrecen atención presencial y asesoría jurídica en línea?",
+    answer: "Sí. Contamos con atención presencial en Santiago y Ñuñoa, además de atención virtual, facilitando el acceso a nuestros servicios jurídicos.",
+  },
+  {
+    title: "¿Pueden representarme en cualquier región de Chile?",
+    answer: "Sí. Brindamos asesoría y representación jurídica a personas y empresas de todo Chile, considerando las particularidades de cada asunto.",
+  },
+  {
+    title: "¿Mi información está protegida por el secreto profesional?",
+    answer: "Sí. La información que nos confíes será tratada con estricta confidencialidad, respetando el secreto profesional y las obligaciones legales y éticas correspondientes.",
+  },
+  {
+    title: "¿Quién estará a cargo de mi caso?",
+    answer: "Tu caso será atendido por profesionales con conocimientos y experiencia en el área jurídica correspondiente, procurando una atención cercana, responsable y personalizada.",
+  },
+  {
+    title: "¿Cuánto tiempo puede durar mi procedimiento y cuáles son sus posibilidades de éxito?",
+    answer: "La duración y las posibilidades de éxito dependen de las circunstancias de cada caso. Nuestro equipo evaluará tus antecedentes y te entregará una orientación objetiva y realista, sin garantizar resultados.",
+  },
+  {
+    title: "¿Cómo podré conocer el estado y los avances de mi causa?",
+    answer: "Mantendremos una comunicación contigo a través de los canales acordados, informándote sobre los avances relevantes de tu causa y las actuaciones que correspondan.",
   },
 ] as const;
 
@@ -56,30 +92,9 @@ export const guides = [
 ] as const;
 
 export const defenseSteps = [
-  { short: "Escucha", title: "Toda defensa comienza escuchando.", text: "En la primera conversación, una persona explica la situación que la trajo al estudio. Identificamos qué necesita, qué le preocupa y si existen fechas que requieren atención." },
-  { short: "Antecedentes", title: "Cada detalle ayuda a entender el caso.", text: "Construimos una cronología y revisamos las comunicaciones y los documentos. La información disponible permite identificar qué falta y qué preguntas conviene resolver." },
-  { short: "Estrategia", title: "Las alternativas se evalúan antes de decidir.", text: "Con los antecedentes a la vista, el equipo compara vías posibles, explica sus riesgos y define con la persona los siguientes pasos." },
-  { short: "Preparación", title: "La estrategia se convierte en acciones.", text: "En este ejemplo se prepara una audiencia. Se ordenan los respaldos y los argumentos, y se conversa con la persona sobre qué esperar en esa etapa." },
-  { short: "Seguimiento", title: "Cada decisión abre una nueva etapa.", text: "Después de la audiencia, el equipo explica qué se resolvió y qué gestiones pueden quedar pendientes. Los próximos pasos dependen de los antecedentes y del resultado de cada caso." },
-] as const;
-
-export const institutionGroups = [
-  { title: "Trabajo y protección social", items: [
-    { name: "Dirección del Trabajo", topic: "Relaciones laborales", href: "https://www.dt.gob.cl/" },
-    { name: "Superintendencia de Salud", topic: "Isapres, salud y prestadores", href: "https://www.superdesalud.gob.cl/" },
-    { name: "Superintendencia de Pensiones", topic: "Pensiones y seguro de cesantía", href: "https://www.spensiones.cl/" },
-    { name: "Superintendencia de Seguridad Social", topic: "Licencias médicas y seguridad social", href: "https://www.suseso.cl/" },
-  ] },
-  { title: "Consumo y servicios", items: [
-    { name: "Servicio Nacional del Consumidor", topic: "Protección de consumidores", href: "https://www.sernac.cl/" },
-    { name: "Superintendencia de Educación", topic: "Educación escolar", href: "https://www.supereduc.cl/" },
-    { name: "Superintendencia de Servicios Sanitarios", topic: "Agua potable y alcantarillado", href: "https://www.siss.gob.cl/" },
-    { name: "Superintendencia de Electricidad y Combustibles", topic: "Electricidad, gas y seguridad", href: "https://www.sec.cl/" },
-  ] },
-  { title: "Estado y regulación", items: [
-    { name: "Servicio de Impuestos Internos", topic: "Tributación y obligaciones fiscales", href: "https://www.sii.cl/" },
-    { name: "Contraloría General de la República", topic: "Legalidad administrativa y función pública", href: "https://www.contraloria.cl/" },
-    { name: "Superintendencia del Medio Ambiente", topic: "Fiscalización ambiental", href: "https://portal.sma.gob.cl/" },
-    { name: "Comisión para el Mercado Financiero", topic: "Mercado financiero, valores y seguros", href: "https://www.cmfchile.cl/" },
-  ] },
+  { phase: "Te escuchamos", label: "Conversación inicial", title: "Toda defensa comienza escuchando.", text: "Conocemos tu situación y lo que necesitas. Una conversación clara, respetuosa y confidencial es nuestro punto de partida." },
+  { phase: "Los antecedentes", label: "Estudio de antecedentes", title: "Los hechos importan. Cada detalle también.", text: "Reunimos y estudiamos los antecedentes disponibles para comprender el contexto, identificar información relevante y preparar los siguientes pasos." },
+  { phase: "Estrategia y defensa", label: "Trabajo estratégico", title: "Una defensa preparada, no improvisada.", text: "Nuestro equipo evalúa los antecedentes, contrasta alternativas y construye una estrategia de defensa ajustada a las circunstancias del caso." },
+  { phase: "Vamos a audiencia", label: "Ingreso a audiencia", title: "La preparación nos acompaña.", text: "Llegamos a la audiencia con una estrategia fundada, un equipo preparado y el compromiso de defender tus derechos en cada intervención." },
+  { phase: "Ganamos", label: "Resultado ficticio favorable", title: "Un resultado favorable. Una historia posible.", text: "En esta simulación ficticia, el tribunal dicta una resolución favorable tras escuchar los argumentos y examinar los antecedentes. Cada caso real es distinto y ningún resultado está garantizado." },
 ] as const;

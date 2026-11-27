@@ -10,12 +10,12 @@ export default function FaqPage() {
     <SiteShell current="faq">
       <section className="editorial-section">
         <div className="wrap">
-          <EditorialHeading label="Antes de consultar" title="Preguntas frecuentes." />
+          <EditorialHeading label="Antes de consultar" title="Preguntas frecuentes" />
           <div className="resource-layout faq-layout">
             <div className="faq-list">
-              {questions.map(({ title, answer }) => (
+              {questions.map(({ title, answer }, index) => (
                 <details key={title} className="faq-item" name="preguntas" data-reveal>
-                  <summary><span>{title}</span><span className="faq-toggle" aria-hidden="true" /></summary>
+                  <summary><span>{index + 1}. {title}</span><span className="faq-toggle" aria-hidden="true" /></summary>
                   <p className="faq-answer">{answer}</p>
                 </details>
               ))}

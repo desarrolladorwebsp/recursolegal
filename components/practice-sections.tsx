@@ -1,39 +1,6 @@
-import { sitePath } from "../lib/site";
-import { practices, team } from "../lib/content";
+import { team } from "../lib/content";
 
 const pillars = ["Rigor jurídico", "Estrategia", "Acompañamiento"];
-
-export function PracticeCards({ detailed = false }: { detailed?: boolean }) {
-  const grid = (
-    <div className="wrap">
-      {detailed ? null : <h2 id="areas">Áreas legales</h2>}
-      <ul className={`practice-grid ${detailed ? "detail-grid" : "home-practice-grid"}`} role="list">
-        {practices.map(({ id, title, description }, index) => (
-          <li key={id} data-reveal>
-            {detailed ? (
-              <article className="detail-card" id={id} tabIndex={-1}>
-                <h2>{title}</h2>
-                <p>{description}</p>
-                <a className="text-action" href={sitePath(`/?area=${id}#contacto`)}>Consultar por esta área <span aria-hidden="true">↗</span></a>
-              </article>
-            ) : (
-              <a className="practice-link" href={sitePath(`/areas-legales.html#${id}`)}>
-                <span className="practice-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{title}</h3>
-                <p>{description}</p>
-                <span className="practice-arrow" aria-hidden="true">↗</span>
-              </a>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-
-  return detailed
-    ? <div className="practice-section">{grid}</div>
-    : <section className="practice-section" aria-labelledby="areas">{grid}</section>;
-}
 
 export function Pillars() {
   return (

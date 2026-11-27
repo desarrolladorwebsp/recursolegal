@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { guides } from "../lib/resources";
 import { site, sitePath } from "../lib/site";
 
 export function EditorialHeading({ title, intro, label, children }: { title: ReactNode; intro?: string; label?: string; children?: ReactNode }) {
@@ -25,25 +24,5 @@ export function ContactPanel() {
       </ul>
       <a className="button hero-secondary" href={sitePath("/#contacto")}>Contactar al estudio <span aria-hidden="true">↗</span></a>
     </aside>
-  );
-}
-
-export function GuideCards() {
-  return (
-    <div className="guides-layout">
-      {guides.map(({ slug, category, title, summary }) => (
-        <article className="guide-card" key={slug} data-reveal>
-          <a className="guide-link" href={sitePath(`/noticias/${slug}.html`)}>
-            <div className="guide-meta">
-              <p className="editorial-category">{category}</p>
-              <span>Guía práctica</span>
-            </div>
-            <h2>{title}</h2>
-            <p>{summary}</p>
-            <span className="editorial-read">Leer guía <span aria-hidden="true">↗</span></span>
-          </a>
-        </article>
-      ))}
-    </div>
   );
 }

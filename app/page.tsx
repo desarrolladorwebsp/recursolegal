@@ -2,7 +2,7 @@ import { homeStructuredData, isPreview, pageMetadata, seoPages } from "../lib/se
 import { sitePath } from "../lib/site";
 import { ContactSection, LocationSection } from "../components/contact-sections";
 import { HeroVideo } from "../components/hero-video";
-import { Pillars, PracticeCards } from "../components/practice-sections";
+import { Pillars } from "../components/practice-sections";
 import { SiteShell } from "../components/site-shell";
 
 export const metadata = pageMetadata(seoPages.home);
@@ -30,7 +30,6 @@ export default function HomePage() {
       </section>
       <ContactSection />
       <LocationSection />
-      <PracticeCards />
     </SiteShell>
   );
 }

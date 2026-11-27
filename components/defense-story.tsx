@@ -3,62 +3,79 @@
 import { useState } from "react";
 import { sitePath } from "../lib/site";
 import { defenseSteps } from "../lib/resources";
+import styles from "./defense-story.module.css";
 
 export function DefenseStory() {
   const [active, setActive] = useState(0);
   const step = defenseSteps[active];
+  const isLast = active === defenseSteps.length - 1;
+  const indexLabel = String(active + 1).padStart(2, "0");
+
+  function advance() {
+    if (isLast) {
+      window.location.assign(sitePath("/#contacto"));
+    } else {
+      setActive(active + 1);
+    }
+  }
 
   return (
-    <section className="defense-story" aria-labelledby="defensa-titulo">
-      <div className="wrap">
-        <div className="story-heading" data-reveal>
-          <p className="section-label">Caso ficticio</p>
-          <h2 id="defensa-titulo">Una defensa, desde dentro.</h2>
-          <p>Sigue cinco etapas de un caso ilustrativo, desde la primera conversación hasta los próximos pasos.</p>
+    <section id="experiencia" className={styles.experience} aria-labelledby="defensa-titulo" data-reveal>
+      <header className={styles.header}>
+        <h2 id="defensa-titulo">Una defensa, desde dentro</h2>
+        <p>Simulación audiovisual · Caso ficticio</p>
+      </header>
+      <div className={styles.stage}>
+        {defenseSteps.map(({ phase }, index) => (
+          <img
+            key={phase}
+            className={styles.scene}
+            data-active={index === active}
+            src={sitePath(`/assets/defensa/etapa-${index + 1}.webp`)}
+            width={1600}
+            height={840}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
+        <span className={styles.stageLabel} aria-hidden="true">{step.label}</span>
+        <span className={styles.stageIndex} aria-hidden="true">{indexLabel} / {String(defenseSteps.length).padStart(2, "0")}</span>
+        {active === 0 && (
+          // The first approved frame includes an arrow on its right edge.
+          <button className={styles.stageNext} type="button" aria-label="Siguiente etapa en la imagen"
+            tabIndex={-1} onClick={advance} />
+        )}
+      </div>
+      <div className={styles.body}>
+        <div className={styles.progress} role="group" aria-label="Elegir etapa">
+          {defenseSteps.map(({ phase }, index) => (
+            <button
+              key={phase}
+              type="button"
+              aria-label={`Etapa ${index + 1}: ${phase}`}
+              aria-pressed={index === active}
+              aria-controls="defensa-etapa"
+              data-completed={index <= active}
+              onClick={() => setActive(index)}
+            />
+          ))}
         </div>
-        <div className="story-panel" id="defensa-etapa" data-reveal>
-          <div className="story-image">
-            <img key={active} src={sitePath(`/assets/defensa/etapa-${active + 1}.webp`)} width="1260" height="560" alt="" loading="lazy" />
-            <p className="story-image-label" aria-hidden="true">{step.short}</p>
-          </div>
-          <ol className="story-steps" aria-label="Etapas de la defensa">
-            {defenseSteps.map(({ short }, index) => (
-              <li key={short}>
-                <button type="button" aria-pressed={index === active} aria-controls="defensa-etapa"
-                  onClick={() => setActive(index)}>
-                  <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>{short}
-                </button>
-              </li>
-            ))}
-          </ol>
-          <div className="story-content" aria-live="polite" aria-atomic="true">
-            <div className="story-copy" key={step.short}>
-              <p className="section-label">Etapa {active + 1} de {defenseSteps.length}</p>
+        <div className={styles.layout}>
+          <div id="defensa-etapa" aria-live="polite" aria-atomic="true">
+            <div className={styles.copy} key={step.phase}>
+              <p className={styles.kicker}>Etapa {indexLabel} · {step.phase}</p>
               <h3>{step.title}</h3>
               <p>{step.text}</p>
             </div>
-            <div className="story-controls">
-              <button type="button" disabled={active === 0} onClick={() => setActive((value) => value - 1)}
-                aria-label="Etapa anterior">←</button>
-              <button type="button" disabled={active === defenseSteps.length - 1}
-                onClick={() => setActive((value) => value + 1)} aria-label="Siguiente etapa">→</button>
-            </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function GoogleReviews() {
-  return (
-    <section className="reviews-section" aria-labelledby="resenas-titulo">
-      <div className="wrap">
-        <div className="reviews-panel" data-reveal>
-          <div><h2 id="resenas-titulo">Reseñas de Google</h2>
-            <p>Las opiniones verificadas se mostrarán cuando se vincule el perfil oficial del estudio.</p>
+          <div className={styles.controls}>
+            <button type="button" disabled={active === 0} onClick={() => setActive(active - 1)}
+              aria-label="Etapa anterior">←</button>
+            <button type="button" className={styles.next} onClick={advance}>
+              {isLast ? "Continuar al contacto ↓" : "Continuar →"}
+            </button>
           </div>
-          <a className="text-action" href={sitePath("/#contacto")}>Contactar al estudio <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>

@@ -1,27 +1,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { chileanDate, indicatorTimeZone, type IndicatorTables } from "../lib/economic-indicators";
+import { sitePath } from "../lib/site";
 
 const officialValues = "https://www.sii.cl/valores_y_fechas/index_valores_y_fechas.html";
-const endpoint = "https://mindicador.cl/api";
+const staticEndpoint = sitePath("/indicadores.json");
+const liveEndpoint = process.env.NEXT_PUBLIC_RECURSO_INDICATORS_ENDPOINT;
+const endpoints = liveEndpoint ? [liveEndpoint, staticEndpoint] : [staticEndpoint];
 const indicators = [
-  { key: "uf", name: "UF", decimals: 2, dateOptions: { day: "numeric", month: "short", year: "numeric" } },
-  { key: "utm", name: "UTM", decimals: 0, dateOptions: { month: "long", year: "numeric" } },
+  { key: "uf", name: "UF · diaria", decimals: 2, dateOptions: { day: "numeric", month: "short", year: "numeric" } },
+  { key: "utm", name: "UTM · mensual", decimals: 0, dateOptions: { month: "long", year: "numeric" } },
 ] as const;
 
-type Indicator = { valor: number; fecha: string };
+type Indicator = { value: number; date: string };
 type Series = Partial<Record<(typeof indicators)[number]["key"], Indicator>>;
 
 function readSeries(data: unknown): Series {
   if (!data || typeof data !== "object") return {};
-  const source = data as Record<string, Partial<Indicator> | undefined>;
+  const tables = data as Partial<IndicatorTables>;
+  const today = chileanDate();
   const series: Series = {};
 
   for (const { key } of indicators) {
-    const metric = source[key];
-    if (typeof metric?.valor === "number" && Number.isFinite(metric.valor) && metric.valor > 0 &&
-        typeof metric.fecha === "string" && Number.isFinite(Date.parse(metric.fecha))) {
-      series[key] = { valor: metric.valor, fecha: metric.fecha };
+    const period = key === "uf" ? today : today.slice(0, 7);
+    const value = tables[key]?.[period];
+    if (typeof value === "number" && Number.isFinite(value) && value > 0) {
+      series[key] = { value, date: period };
     }
   }
   return series;
@@ -32,22 +37,29 @@ export function EconomicIndicators() {
   const [series, setSeries] = useState<Series | null>(null);
 
   useEffect(() => {
-    const controller = new AbortController();
-    let timer: number | undefined;
+    let request: AbortController | undefined;
     let active = true;
 
     async function load() {
-      timer = window.setTimeout(() => controller.abort(), 6_000);
-      try {
-        const response = await fetch(endpoint, { signal: controller.signal, credentials: "omit" });
-        if (!response.ok) throw new Error("Indicadores no disponibles");
-        const data = readSeries(await response.json());
-        if (active) setSeries(data);
-      } catch {
-        if (active) setSeries({});
-      } finally {
-        window.clearTimeout(timer);
+      let current: Series = {};
+
+      for (const endpoint of endpoints) {
+        if (!active) return;
+        const controller = new AbortController();
+        request = controller;
+        const timeout = window.setTimeout(() => controller.abort(), 7_000);
+        try {
+          const response = await fetch(endpoint, { signal: controller.signal });
+          if (response.ok) current = { ...readSeries(await response.json()), ...current };
+        } catch {
+          // The exported table can still supply values if the live request fails.
+        } finally {
+          window.clearTimeout(timeout);
+        }
+        if (current.uf && current.utm) break;
       }
+
+      if (active) setSeries(current);
     }
 
     const element = block.current;
@@ -66,8 +78,7 @@ export function EconomicIndicators() {
     return () => {
       active = false;
       observer?.disconnect();
-      controller.abort();
-      window.clearTimeout(timer);
+      request?.abort();
     };
   }, []);
 
@@ -77,23 +88,24 @@ export function EconomicIndicators() {
       <dl className="indicator-grid">
         {indicators.map(({ key, name, decimals, dateOptions }) => {
           const metric = series?.[key];
+          const date = metric && new Date(`${metric.date}${key === "utm" ? "-01" : ""}T12:00:00Z`);
           return (
             <div key={key}>
               <dt>{name}</dt>
               <dd>{metric ? new Intl.NumberFormat("es-CL", {
                 style: "currency", currency: "CLP", minimumFractionDigits: decimals, maximumFractionDigits: decimals,
-              }).format(metric.valor) : series === null ? "—" : "No disponible"}</dd>
-              {metric ? (
-                <dd><time dateTime={metric.fecha}>{new Intl.DateTimeFormat("es-CL", {
-                  ...dateOptions, timeZone: "America/Santiago",
-                }).format(new Date(metric.fecha))}</time></dd>
+              }).format(metric.value) : series === null ? "—" : "No disponible"}</dd>
+              {metric && date ? (
+                <dd><time dateTime={metric.date}>{new Intl.DateTimeFormat("es-CL", {
+                  ...dateOptions, timeZone: indicatorTimeZone,
+                }).format(date)}</time></dd>
               ) : null}
             </div>
           );
         })}
       </dl>
       <a href={officialValues}>Consultar valores oficiales <span aria-hidden="true">↗</span></a>
-      <p>Fuente automática: mindicador.cl</p>
+      <p>Fuente oficial: Servicio de Impuestos Internos</p>
     </section>
   );
 }

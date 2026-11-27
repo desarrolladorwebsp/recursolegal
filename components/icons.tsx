@@ -28,6 +28,7 @@ export function SocialIcon({ name }: { name: SocialName }) {
 }
 
 const lines = {
+  check: <path d="m5 12 4.5 4.5L19 7" />,
   person: <><circle cx="12" cy="7.5" r="3" /><path d="M5 20v-1.5a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5V20" /></>,
   video: <><rect x="3" y="6" width="12" height="12" rx="2" /><path d="m15 10 6-3v10l-6-3" /></>,
   mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></>,

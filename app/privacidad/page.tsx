@@ -24,7 +24,7 @@ export default function PrivacyPage() {
               </section>
               <section>
                 <h2>Servicios externos</h2>
-                <p>La página incluye un mapa de Google Maps, valores de UF y UTM de mindicador.cl y enlaces a redes sociales y sitios oficiales. Sus servicios se rigen por las condiciones y políticas de cada proveedor.</p>
+                <p>La página incluye un mapa de Google Maps, valores de UF y UTM publicados por el Servicio de Impuestos Internos y enlaces a redes sociales y sitios oficiales. Sus servicios se rigen por las condiciones y políticas de cada proveedor.</p>
               </section>
               <section>
                 <h2>Consultas sobre privacidad</h2>

@@ -21,7 +21,7 @@ export const seoPages = {
   },
   practices: {
     path: "/areas-legales.html",
-    title: "Áreas legales",
+    title: "Áreas de trabajo",
     description: "Conoce las siete áreas de asesoría y defensa jurídica de Recurso Legal, de derecho laboral y familia a empresas y defensa institucional.",
   },
   about: {

@@ -62,7 +62,7 @@ function SocialRail() {
   );
 }
 
-function Footer({ showConsultation }: { showConsultation: boolean }) {
+function Footer() {
   return (
     <footer className="site-footer">
       <div className="wrap">
@@ -70,44 +70,44 @@ function Footer({ showConsultation }: { showConsultation: boolean }) {
           <div className="footer-brand">
             <Brand footer />
             <p>Asesoría y defensa jurídica con una mirada estratégica, rigurosa y cercana.</p>
-            {showConsultation ? <a className="button" href={sitePath("/#contacto")}>Conversemos sobre tu caso</a> : null}
-          </div>
-          <div className="footer-contact">
-            <h2>Contacto</h2>
-            <ul className="footer-links">
-              <li><a href={site.location.href}>{site.location.address}</a></li>
-              <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-              <li><a href={site.phone.href}>Teléfono <span>{site.phone.number}</span></a></li>
-              <li><a href={site.whatsapp.href}>WhatsApp <span>{site.whatsapp.number}</span></a></li>
-            </ul>
+            <nav className="footer-social" aria-label="Redes sociales">
+              {socials.map(({ href, name }) => (
+                <a key={name} href={href} aria-label={name}><SocialIcon name={name} /></a>
+              ))}
+            </nav>
           </div>
           <nav aria-label="Explora el sitio">
             <h2>Explora el sitio</h2>
             <ul className="footer-links">
-              {navigation.filter(({ id }) => id !== "contact").map(({ id, href, label }) => (
+              {navigation.map(({ id, href, label }) => (
                 <li key={id}><a href={sitePath(href)}>{label}</a></li>
               ))}
               <li><a href={sitePath("/#ubicacion")}>Ubicación y reuniones</a></li>
             </ul>
           </nav>
+          <nav aria-label="Información legal">
+            <h2>Información legal</h2>
+            <ul className="footer-links footer-policy-links">
+              <li><a href={sitePath("/privacidad.html")}>Política de privacidad</a></li>
+              <li><a href={sitePath("/normativas.html")}>Normativas y aviso legal</a></li>
+            </ul>
+          </nav>
           <EconomicIndicators />
         </div>
-        <div className="footer-resources">
-          <nav aria-label="Información legal">
-            <a href={sitePath("/privacidad.html")}>Política de privacidad</a>
-            <a href={sitePath("/normativas.html")}>Normativas y aviso legal</a>
-          </nav>
-          <nav aria-label="Redes sociales">
-            {socials.map(({ href, name }) => (
-              <a key={name} href={href} aria-label={name}><SocialIcon name={name} /></a>
-            ))}
-          </nav>
-        </div>
+        <section className="footer-contact" aria-labelledby="contacto-pie">
+          <h2 id="contacto-pie">Contacto y oficinas</h2>
+          <ul className="footer-links">
+            <li><a href={site.location.href}>{site.location.address}</a></li>
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><a href={site.phone.href}>Teléfono <span>{site.phone.number}</span></a></li>
+            <li><a href={site.whatsapp.href}>WhatsApp <span>{site.whatsapp.number}</span></a></li>
+          </ul>
+          <p>Atención presencial y virtual en Chile, previa coordinación.</p>
+        </section>
         <div className="footer-legal">
           <p>© 2026 Recurso Legal. Todos los derechos reservados.</p>
           <a className="footer-credit" href="https://smartpro.cl/">
-            <span>Creado por <span className="footer-credit-domain">smartpro.cl</span></span>
-            <img src={sitePath("/assets/logo-smartpro-white-letters.webp")} width={256} height={85} alt="" loading="lazy" />
+            <img src={sitePath("/assets/logo-smartpro-white-letters.webp")} width={256} height={85} alt="SmartPro" loading="lazy" />
           </a>
         </div>
       </div>
@@ -131,7 +131,7 @@ export function SiteShell({ current, children }: { current: Route; children: Rea
       <Header current={current} />
       <SocialRail />
       <main id="contenido" tabIndex={-1}>{children}</main>
-      <Footer showConsultation={current !== "home"} />
+      <Footer />
       <MobileContact />
       <SiteEffects />
     </>
